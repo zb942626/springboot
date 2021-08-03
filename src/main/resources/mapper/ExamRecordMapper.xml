@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zb.dao.ExamRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zb.bean.ExamRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="exam_stuid" property="examStuid" jdbcType="INTEGER" />
+    <result column="exam_subjectid" property="examSubjectid" jdbcType="INTEGER" />
+    <result column="exam_begintime" property="examBegintime" jdbcType="TIMESTAMP" />
+    <result column="exam_endtime" property="examEndtime" jdbcType="TIMESTAMP" />
+    <result column="exam_druation" property="examDruation" jdbcType="INTEGER" />
+    <result column="exam_score" property="examScore" jdbcType="REAL" />
+    <result column="exam_state" property="examState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, exam_stuid, exam_subjectid, exam_begintime, exam_endtime, exam_druation, exam_score, 
+    exam_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exam_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zb.bean.ExamRecord" >
+    insert into exam_record (id, exam_stuid, exam_subjectid, 
+      exam_begintime, exam_endtime, exam_druation, 
+      exam_score, exam_state)
+    values (#{id,jdbcType=INTEGER}, #{examStuid,jdbcType=INTEGER}, #{examSubjectid,jdbcType=INTEGER}, 
+      #{examBegintime,jdbcType=TIMESTAMP}, #{examEndtime,jdbcType=TIMESTAMP}, #{examDruation,jdbcType=INTEGER}, 
+      #{examScore,jdbcType=REAL}, #{examState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zb.bean.ExamRecord" >
+    insert into exam_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="examStuid != null" >
+        exam_stuid,
+      </if>
+      <if test="examSubjectid != null" >
+        exam_subjectid,
+      </if>
+      <if test="examBegintime != null" >
+        exam_begintime,
+      </if>
+      <if test="examEndtime != null" >
+        exam_endtime,
+      </if>
+      <if test="examDruation != null" >
+        exam_druation,
+      </if>
+      <if test="examScore != null" >
+        exam_score,
+      </if>
+      <if test="examState != null" >
+        exam_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="examStuid != null" >
+        #{examStuid,jdbcType=INTEGER},
+      </if>
+      <if test="examSubjectid != null" >
+        #{examSubjectid,jdbcType=INTEGER},
+      </if>
+      <if test="examBegintime != null" >
+        #{examBegintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examEndtime != null" >
+        #{examEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDruation != null" >
+        #{examDruation,jdbcType=INTEGER},
+      </if>
+      <if test="examScore != null" >
+        #{examScore,jdbcType=REAL},
+      </if>
+      <if test="examState != null" >
+        #{examState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.bean.ExamRecord" >
+    update exam_record
+    <set >
+      <if test="examStuid != null" >
+        exam_stuid = #{examStuid,jdbcType=INTEGER},
+      </if>
+      <if test="examSubjectid != null" >
+        exam_subjectid = #{examSubjectid,jdbcType=INTEGER},
+      </if>
+      <if test="examBegintime != null" >
+        exam_begintime = #{examBegintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examEndtime != null" >
+        exam_endtime = #{examEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examDruation != null" >
+        exam_druation = #{examDruation,jdbcType=INTEGER},
+      </if>
+      <if test="examScore != null" >
+        exam_score = #{examScore,jdbcType=REAL},
+      </if>
+      <if test="examState != null" >
+        exam_state = #{examState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zb.bean.ExamRecord" >
+    update exam_record
+    set exam_stuid = #{examStuid,jdbcType=INTEGER},
+      exam_subjectid = #{examSubjectid,jdbcType=INTEGER},
+      exam_begintime = #{examBegintime,jdbcType=TIMESTAMP},
+      exam_endtime = #{examEndtime,jdbcType=TIMESTAMP},
+      exam_druation = #{examDruation,jdbcType=INTEGER},
+      exam_score = #{examScore,jdbcType=REAL},
+      exam_state = #{examState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

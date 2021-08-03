@@ -1,0 +1,49 @@
+server:
+  port: 8888
+mybatis:
+  mapper-locations: classpath:mapper/*xml
+  configuration-properties: classpath:mabatis-config.xml
+
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      additional-exclude: static/**,tempates/**
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/kaoshi?characterEncoding=UTF-8&serverTimezone=UTC
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
+      initial-size: 10
+      min-idle: 10
+      max-active: 100
+      min-evictable-idle-time-millis: 1800000
+      max-wait: 50000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      time-between-connect-error-millis: 60000
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+swagger:
+  base-package: com.zb.bootdemo.controller
+  title: 教学内容
+  description: 张三
+  version: 1.0
+  license: 李四
+
+

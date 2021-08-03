@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zb.dao.ExamRecordDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.zb.bean.ExamRecordDetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="details_recordid" property="detailsRecordid" jdbcType="INTEGER" />
+    <result column="details_questionid" property="detailsQuestionid" jdbcType="INTEGER" />
+    <result column="details_answer" property="detailsAnswer" jdbcType="VARCHAR" />
+    <result column="deatils_isright" property="deatilsIsright" jdbcType="INTEGER" />
+    <result column="details_createtime" property="detailsCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, details_recordid, details_questionid, details_answer, deatils_isright, details_createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_record_details
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exam_record_details
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zb.bean.ExamRecordDetails" >
+    insert into exam_record_details (id, details_recordid, details_questionid, 
+      details_answer, deatils_isright, details_createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{detailsRecordid,jdbcType=INTEGER}, #{detailsQuestionid,jdbcType=INTEGER}, 
+      #{detailsAnswer,jdbcType=VARCHAR}, #{deatilsIsright,jdbcType=INTEGER}, #{detailsCreatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zb.bean.ExamRecordDetails" >
+    insert into exam_record_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="detailsRecordid != null" >
+        details_recordid,
+      </if>
+      <if test="detailsQuestionid != null" >
+        details_questionid,
+      </if>
+      <if test="detailsAnswer != null" >
+        details_answer,
+      </if>
+      <if test="deatilsIsright != null" >
+        deatils_isright,
+      </if>
+      <if test="detailsCreatetime != null" >
+        details_createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="detailsRecordid != null" >
+        #{detailsRecordid,jdbcType=INTEGER},
+      </if>
+      <if test="detailsQuestionid != null" >
+        #{detailsQuestionid,jdbcType=INTEGER},
+      </if>
+      <if test="detailsAnswer != null" >
+        #{detailsAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="deatilsIsright != null" >
+        #{deatilsIsright,jdbcType=INTEGER},
+      </if>
+      <if test="detailsCreatetime != null" >
+        #{detailsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.bean.ExamRecordDetails" >
+    update exam_record_details
+    <set >
+      <if test="detailsRecordid != null" >
+        details_recordid = #{detailsRecordid,jdbcType=INTEGER},
+      </if>
+      <if test="detailsQuestionid != null" >
+        details_questionid = #{detailsQuestionid,jdbcType=INTEGER},
+      </if>
+      <if test="detailsAnswer != null" >
+        details_answer = #{detailsAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="deatilsIsright != null" >
+        deatils_isright = #{deatilsIsright,jdbcType=INTEGER},
+      </if>
+      <if test="detailsCreatetime != null" >
+        details_createtime = #{detailsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zb.bean.ExamRecordDetails" >
+    update exam_record_details
+    set details_recordid = #{detailsRecordid,jdbcType=INTEGER},
+      details_questionid = #{detailsQuestionid,jdbcType=INTEGER},
+      details_answer = #{detailsAnswer,jdbcType=VARCHAR},
+      deatils_isright = #{deatilsIsright,jdbcType=INTEGER},
+      details_createtime = #{detailsCreatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

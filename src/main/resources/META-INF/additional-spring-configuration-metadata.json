@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "pagehelper",
+      "type": "java.lang.String",
+      "description": "Description for pagehelper."
+    },
+    {
+      "name": "mybatis.configuration",
+      "type": "java.lang.String",
+      "description": "Description for mybatis.configuration."
+    }
+  ] }

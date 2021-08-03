@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zb.dao.OptionsMapper" >
+  <resultMap id="BaseResultMap" type="com.zb.bean.Options" >
+    <id column="optionid" property="optionid" jdbcType="INTEGER" />
+    <result column="questionid" property="questionid" jdbcType="INTEGER" />
+    <result column="optionorder" property="optionorder" jdbcType="INTEGER" />
+    <result column="optionpre" property="optionpre" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zb.bean.Options" extends="BaseResultMap" >
+    <result column="optiontext" property="optiontext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    optionid, questionid, optionorder, optionpre
+  </sql>
+  <sql id="Blob_Column_List" >
+    optiontext
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from options
+    where optionid = #{optionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from options
+    where optionid = #{optionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zb.bean.Options" >
+    insert into options (optionid, questionid, optionorder, 
+      optionpre, optiontext)
+    values (#{optionid,jdbcType=INTEGER}, #{questionid,jdbcType=INTEGER}, #{optionorder,jdbcType=INTEGER}, 
+      #{optionpre,jdbcType=VARCHAR}, #{optiontext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zb.bean.Options" >
+    insert into options
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="optionid != null" >
+        optionid,
+      </if>
+      <if test="questionid != null" >
+        questionid,
+      </if>
+      <if test="optionorder != null" >
+        optionorder,
+      </if>
+      <if test="optionpre != null" >
+        optionpre,
+      </if>
+      <if test="optiontext != null" >
+        optiontext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="optionid != null" >
+        #{optionid,jdbcType=INTEGER},
+      </if>
+      <if test="questionid != null" >
+        #{questionid,jdbcType=INTEGER},
+      </if>
+      <if test="optionorder != null" >
+        #{optionorder,jdbcType=INTEGER},
+      </if>
+      <if test="optionpre != null" >
+        #{optionpre,jdbcType=VARCHAR},
+      </if>
+      <if test="optiontext != null" >
+        #{optiontext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.bean.Options" >
+    update options
+    <set >
+      <if test="questionid != null" >
+        questionid = #{questionid,jdbcType=INTEGER},
+      </if>
+      <if test="optionorder != null" >
+        optionorder = #{optionorder,jdbcType=INTEGER},
+      </if>
+      <if test="optionpre != null" >
+        optionpre = #{optionpre,jdbcType=VARCHAR},
+      </if>
+      <if test="optiontext != null" >
+        optiontext = #{optiontext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where optionid = #{optionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zb.bean.Options" >
+    update options
+    set questionid = #{questionid,jdbcType=INTEGER},
+      optionorder = #{optionorder,jdbcType=INTEGER},
+      optionpre = #{optionpre,jdbcType=VARCHAR},
+      optiontext = #{optiontext,jdbcType=LONGVARCHAR}
+    where optionid = #{optionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zb.bean.Options" >
+    update options
+    set questionid = #{questionid,jdbcType=INTEGER},
+      optionorder = #{optionorder,jdbcType=INTEGER},
+      optionpre = #{optionpre,jdbcType=VARCHAR}
+    where optionid = #{optionid,jdbcType=INTEGER}
+  </update>
+</mapper>
